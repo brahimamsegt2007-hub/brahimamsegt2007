@@ -2,30 +2,291 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Prénom Nom – CV</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Brahim Amsegt — Étudiant ingénieur ENSEEIHT</title>
+  <meta name="description" content="Brahim Amsegt, étudiant ingénieur en 1ère année à l'ENSEEIHT (Toulouse INP). Parcours, compétences, langues et centres d'intérêt.">
   <style>
-    body { font-family: system-ui, sans-serif; max-width: 760px; margin: 40px auto; padding: 0 16px; line-height: 1.6; color: #222; }
-    h1 { margin-bottom: 0; }
-    h2 { border-bottom: 2px solid #ddd; padding-bottom: 4px; margin-top: 2em; }
-    .date { color: #666; font-size: 0.9em; }
+    :root {
+      --bg: #f7f8fb;
+      --surface: #ffffff;
+      --text: #1b2333;
+      --muted: #5d6779;
+      --accent: #1f3a6e;
+      --accent-soft: #e6ecf8;
+      --border: #dfe4ee;
+      --shadow: 0 6px 24px rgba(31, 58, 110, 0.08);
+    }
+    :root[data-theme="dark"] {
+      --bg: #0f1522;
+      --surface: #171f31;
+      --text: #e8ecf5;
+      --muted: #9aa5ba;
+      --accent: #8fb0ff;
+      --accent-soft: #1f2a45;
+      --border: #26314a;
+      --shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.65;
+    }
+    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.2; margin: 0; }
+    a { color: var(--accent); }
+
+    /* Navbar */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 88%, transparent);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav {
+      max-width: 1000px; margin: 0 auto; padding: 12px 20px;
+      display: flex; align-items: center; gap: 16px;
+    }
+    .brand { font-family: Georgia, serif; font-weight: 700; font-size: 1.15rem; color: var(--accent); text-decoration: none; margin-right: auto; }
+    .links { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+    .links a {
+      display: block; padding: 6px 12px; border-radius: 999px;
+      text-decoration: none; color: var(--muted); font-size: 0.95rem;
+    }
+    .links a:hover, .links a.active { background: var(--accent-soft); color: var(--accent); }
+    .tools { display: flex; gap: 8px; align-items: center; }
+    .btn {
+      border: 1px solid var(--border); background: var(--surface); color: var(--text);
+      border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 0.9rem; cursor: pointer; text-decoration: none;
+    }
+    .btn:hover { border-color: var(--accent); }
+    .btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+    #burger { display: none; }
+
+    /* Layout */
+    main { max-width: 1000px; margin: 0 auto; padding: 0 20px 60px; }
+    section { padding: 56px 0 8px; }
+    .title { font-size: 1.7rem; color: var(--accent); margin-bottom: 8px; }
+    .title::after { content: ""; display: block; width: 48px; height: 3px; background: var(--accent); border-radius: 3px; margin-top: 8px; }
+    .card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 22px 24px; box-shadow: var(--shadow);
+    }
+
+    /* Hero */
+    .hero { display: grid; grid-template-columns: 1fr 220px; gap: 36px; align-items: center; padding-top: 48px; }
+    .kicker { color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 10px; }
+    .hero h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); color: var(--accent); }
+    .role { font-size: 1.15rem; color: var(--muted); margin: 8px 0 18px; }
+    .lead { font-style: italic; max-width: 60ch; }
+    .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .cta .btn { padding: 10px 18px; font-size: 0.95rem; }
+    .photo {
+      width: 220px; height: 290px; object-fit: cover; border-radius: 20px;
+      box-shadow: var(--shadow); border: 4px solid var(--surface);
+    }
+
+    /* Timeline */
+    .timeline { list-style: none; margin: 24px 0 0; padding: 0 0 0 22px; border-left: 2px solid var(--border); }
+    .timeline li { position: relative; margin-bottom: 18px; }
+    .timeline li::before {
+      content: ""; position: absolute; left: -30px; top: 26px;
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--accent); border: 3px solid var(--bg);
+    }
+    .date { color: var(--accent); font-weight: 600; font-size: 0.9rem; }
+    .timeline h3 { font-size: 1.15rem; margin: 2px 0 2px; }
+    .place { color: var(--muted); font-style: italic; font-size: 0.95rem; }
+    .badge {
+      display: inline-block; background: var(--accent-soft); color: var(--accent);
+      border-radius: 999px; padding: 2px 10px; font-size: 0.85rem; font-weight: 600; margin-top: 6px;
+    }
+
+    /* Grids */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-top: 24px; }
+    .grid .card { padding: 18px 20px; }
+    .grid .card .icon { font-size: 1.5rem; }
+    .grid .card p { margin: 6px 0 0; }
+    .lang { display: flex; justify-content: space-between; align-items: center; }
+    .lang strong { font-family: Georgia, serif; font-size: 1.1rem; }
+    .lang span { color: var(--muted); }
+
+    footer { border-top: 1px solid var(--border); text-align: center; color: var(--muted); padding: 22px 20px; font-size: 0.9rem; }
+
+    /* Mobile */
+    @media (max-width: 760px) {
+      #burger { display: inline-block; }
+      .links {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; padding: 10px 20px 16px;
+        background: var(--bg); border-bottom: 1px solid var(--border);
+      }
+      .links.open { display: flex; }
+      .nav { position: relative; }
+      .hero { grid-template-columns: 1fr; text-align: left; }
+      .photo { order: -1; width: 150px; height: 200px; }
+      .tools .cv-btn { display: none; }
+    }
   </style>
 </head>
 <body>
-  <h1>Prénom Nom</h1>
-  <p>Titre / métier recherché · email@exemple.fr · Toulouse</p>
+  <header>
+    <nav class="nav">
+      <a class="brand" href="#home">Brahim Amsegt</a>
+      <ul class="links" id="links">
+        <li><a href="#home" data-fr="Accueil" data-en="Home">Accueil</a></li>
+        <li><a href="#education" data-fr="Formation" data-en="Education">Formation</a></li>
+        <li><a href="#skills" data-fr="Compétences" data-en="Skills">Compétences</a></li>
+        <li><a href="#languages" data-fr="Langues" data-en="Languages">Langues</a></li>
+        <li><a href="#interests" data-fr="Intérêts" data-en="Interests">Intérêts</a></li>
+        <li><a href="#contact" data-fr="Contact" data-en="Contact">Contact</a></li>
+      </ul>
+      <div class="tools">
+        <a class="btn primary cv-btn" href="assets/CV_Brahim_Amsegt.pdf" target="_blank" rel="noopener" data-fr="CV (PDF)" data-en="Résumé (PDF)">CV (PDF)</a>
+        <button class="btn" id="theme" aria-label="Changer de thème">🌓</button>
+        <button class="btn" id="lang" aria-label="Changer de langue">EN</button>
+        <button class="btn" id="burger" aria-label="Menu">☰</button>
+      </div>
+    </nav>
+  </header>
 
-  <h2>Parcours éducationnel</h2>
-  <p><strong>Master en …</strong> – Université …<br><span class="date">2022 – 2024</span></p>
-  <p><strong>Licence en …</strong> – Université …<br><span class="date">2019 – 2022</span></p>
+  <main>
+    <!-- Accueil -->
+    <section id="home" class="hero">
+      <div>
+        <div class="kicker" data-fr="ENSEEIHT · Toulouse INP" data-en="ENSEEIHT · Toulouse INP">ENSEEIHT · Toulouse INP</div>
+        <h1>Brahim Amsegt</h1>
+        <div class="role" data-fr="Étudiant ingénieur en 1ère année" data-en="First-year engineering student">Étudiant ingénieur en 1ère année</div>
+        <p class="lead" data-fr="Étudiant en 1ère année à l'ENSEEIHT, rigoureux et sérieux, formé par deux années de classes préparatoires scientifiques. Motivé, ponctuel et à l'aise dans le contact avec autrui, je recherche un poste étudiant me permettant de m'investir durablement au sein de mon école." data-en="First-year student at ENSEEIHT, rigorous and serious, trained through two years of scientific preparatory classes. Motivated, punctual and comfortable dealing with people, I am looking for a student position that will let me get lastingly involved in my school.">Étudiant en 1ère année à l'ENSEEIHT, rigoureux et sérieux, formé par deux années de classes préparatoires scientifiques. Motivé, ponctuel et à l'aise dans le contact avec autrui, je recherche un poste étudiant me permettant de m'investir durablement au sein de mon école.</p>
+        <div class="cta">
+          <a class="btn primary" href="assets/CV_Brahim_Amsegt.pdf" target="_blank" rel="noopener" data-fr="Télécharger mon CV" data-en="Download my résumé">Télécharger mon CV</a>
+          <a class="btn" href="mailto:brahimamsegt2007@gmail.com" data-fr="Me contacter" data-en="Contact me">Me contacter</a>
+        </div>
+      </div>
+      <img class="photo" src="assets/photo.jpg" alt="Portrait de Brahim Amsegt">
+    </section>
 
-  <h2>Expériences</h2>
-  <p><strong>Poste</strong> – Entreprise<br><span class="date">2024 – 2025</span><br>Description des missions.</p>
+    <!-- Formation -->
+    <section id="education">
+      <h2 class="title" data-fr="Parcours éducationnel" data-en="Education">Parcours éducationnel</h2>
+      <ul class="timeline">
+        <li class="card">
+          <div class="date" data-fr="2026 – présent" data-en="2026 – present">2026 – présent</div>
+          <h3 data-fr="Cycle ingénieur, 1ère année — ENSEEIHT (Toulouse INP)" data-en="Engineering degree, 1st year — ENSEEIHT (Toulouse INP)">Cycle ingénieur, 1ère année — ENSEEIHT (Toulouse INP)</h3>
+          <div class="place" data-fr="Admis par la voie des Concours Communs INP (CCINP)" data-en="Admitted through the Concours Communs INP (CCINP)">Admis par la voie des Concours Communs INP (CCINP)</div>
+        </li>
+        <li class="card">
+          <div class="date">2024 – 2026</div>
+          <h3 data-fr="Classes préparatoires scientifiques MPSI/MP" data-en="Scientific preparatory classes MPSI/MP">Classes préparatoires scientifiques MPSI/MP</h3>
+          <div class="place" data-fr="Lycée Omar Ibn Al-Khattab, Meknès, Maroc" data-en="Lycée Omar Ibn Al-Khattab, Meknès, Morocco">Lycée Omar Ibn Al-Khattab, Meknès, Maroc</div>
+        </li>
+        <li class="card">
+          <div class="date">2024</div>
+          <h3 data-fr="Baccalauréat scientifique" data-en="Scientific Baccalaureate">Baccalauréat scientifique</h3>
+          <div class="place" data-fr="Maroc" data-en="Morocco">Maroc</div>
+          <span class="badge" data-fr="Mention Très Bien" data-en="Highest honours (Très Bien)">Mention Très Bien</span>
+        </li>
+      </ul>
+    </section>
 
-  <h2>Compétences</h2>
-  <p>Langues, logiciels, etc.</p>
+    <!-- Compétences -->
+    <section id="skills">
+      <h2 class="title" data-fr="Compétences et qualités" data-en="Skills and qualities">Compétences et qualités</h2>
+      <div class="grid">
+        <div class="card"><div class="icon">🎯</div><p data-fr="Rigueur, organisation et sens des responsabilités, développés en classes préparatoires" data-en="Rigour, organisation and sense of responsibility, developed in preparatory classes">Rigueur, organisation et sens des responsabilités, développés en classes préparatoires</p></div>
+        <div class="card"><div class="icon">🤝</div><p data-fr="Sens de l'accueil, du service et de l'écoute" data-en="Welcoming, service-minded and a good listener">Sens de l'accueil, du service et de l'écoute</p></div>
+        <div class="card"><div class="icon">👥</div><p data-fr="Capacité de travail en autonomie et en équipe" data-en="Able to work both independently and in a team">Capacité de travail en autonomie et en équipe</p></div>
+        <div class="card"><div class="icon">💻</div><p data-fr="Bonne maîtrise des outils bureautiques (Word, Excel, Pack Office)" data-en="Good command of office tools (Word, Excel, Office suite)">Bonne maîtrise des outils bureautiques (Word, Excel, Pack Office)</p></div>
+        <div class="card"><div class="icon">⏰</div><p data-fr="Ponctualité et fiabilité, essentielles pour assurer des permanences régulières" data-en="Punctuality and reliability, essential for covering regular shifts">Ponctualité et fiabilité, essentielles pour assurer des permanences régulières</p></div>
+      </div>
+    </section>
 
-  <h2>Télécharger mon CV</h2>
-  <p><a href="cv.pdf">CV au format PDF</a></p>
+    <!-- Langues -->
+    <section id="languages">
+      <h2 class="title" data-fr="Langues" data-en="Languages">Langues</h2>
+      <div class="grid">
+        <div class="card lang"><strong data-fr="Arabe" data-en="Arabic">Arabe</strong><span data-fr="langue maternelle" data-en="native">langue maternelle</span></div>
+        <div class="card lang"><strong data-fr="Français" data-en="French">Français</strong><span data-fr="courant" data-en="fluent">courant</span></div>
+        <div class="card lang"><strong data-fr="Anglais" data-en="English">Anglais</strong><span data-fr="courant" data-en="fluent">courant</span></div>
+      </div>
+    </section>
+
+    <!-- Intérêts -->
+    <section id="interests">
+      <h2 class="title" data-fr="Centres d'intérêt" data-en="Interests">Centres d'intérêt</h2>
+      <div class="grid">
+        <div class="card"><div class="icon">🥾</div><p data-fr="Randonnée" data-en="Hiking">Randonnée</p></div>
+        <div class="card"><div class="icon">🏀</div><p data-fr="Basketball (pratiqué en club)" data-en="Basketball (played in a club)">Basketball (pratiqué en club)</p></div>
+        <div class="card"><div class="icon">♟️</div><p data-fr="Échecs" data-en="Chess">Échecs</p></div>
+        <div class="card"><div class="icon">🌍</div><p data-fr="Voyages et découverte de nouvelles cultures" data-en="Travel and discovering new cultures">Voyages et découverte de nouvelles cultures</p></div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2 class="title">Contact</h2>
+      <div class="card" style="margin-top:24px">
+        <p style="margin:0 0 6px">📍 Toulouse, France</p>
+        <p style="margin:0 0 14px">✉️ <a href="mailto:brahimamsegt2007@gmail.com">brahimamsegt2007@gmail.com</a></p>
+        <a class="btn primary" href="assets/CV_Brahim_Amsegt.pdf" target="_blank" rel="noopener" data-fr="Télécharger mon CV (PDF)" data-en="Download my résumé (PDF)">Télécharger mon CV (PDF)</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Brahim Amsegt — ENSEEIHT (Toulouse INP)</footer>
+
+  <script>
+    var root = document.documentElement;
+
+    /* Thème */
+    function safeGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+    function safeSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+    var theme = safeGet('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    root.setAttribute('data-theme', theme);
+    document.getElementById('theme').addEventListener('click', function () {
+      theme = theme === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', theme);
+      safeSet('theme', theme);
+    });
+
+    /* Langue FR / EN */
+    var lang = safeGet('lang') || 'fr';
+    function applyLang() {
+      root.lang = lang;
+      document.querySelectorAll('[data-fr]').forEach(function (el) {
+        el.textContent = el.getAttribute('data-' + lang);
+      });
+      document.getElementById('lang').textContent = lang === 'fr' ? 'EN' : 'FR';
+      document.title = lang === 'fr'
+        ? 'Brahim Amsegt — Étudiant ingénieur ENSEEIHT'
+        : 'Brahim Amsegt — Engineering student, ENSEEIHT';
+    }
+    document.getElementById('lang').addEventListener('click', function () {
+      lang = lang === 'fr' ? 'en' : 'fr';
+      safeSet('lang', lang);
+      applyLang();
+    });
+    applyLang();
+
+    /* Menu mobile */
+    var links = document.getElementById('links');
+    document.getElementById('burger').addEventListener('click', function () { links.classList.toggle('open'); });
+    links.addEventListener('click', function () { links.classList.remove('open'); });
+
+    /* Lien actif au scroll */
+    var navLinks = document.querySelectorAll('.links a');
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          navLinks.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id); });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('main section').forEach(function (s) { observer.observe(s); });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
