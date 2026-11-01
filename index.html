@@ -8,17 +8,17 @@
   <style>
     :root {
       color-scheme: dark;
-      --bg: #070c1e;
-      --surface: #0e1630;
+      --bg: #0a0f1f;
+      --surface: #121a31;
       --text: #eef2ff;
       --muted: #9aa7cc;
-      --accent: #38bdf8;
-      --accent2: #a78bfa;
-      --on-accent: #04101f;
-      --accent-soft: rgba(56, 189, 248, 0.14);
-      --border: #1f2b52;
-      --glow1: rgba(56, 189, 248, 0.14);
-      --glow2: rgba(167, 139, 250, 0.12);
+      --accent: #7d93ff;
+      --accent2: #3cc0a8;
+      --on-accent: #07102a;
+      --accent-soft: rgba(125, 147, 255, 0.14);
+      --border: #252f52;
+      --glow1: rgba(125, 147, 255, 0.11);
+      --glow2: rgba(60, 192, 168, 0.08);
       --shadow: none;
     }
     :root[data-theme="light"] {
@@ -27,13 +27,13 @@
       --surface: #ffffff;
       --text: #0d1530;
       --muted: #55608a;
-      --accent: #2563eb;
-      --accent2: #7c3aed;
+      --accent: #3f5bd8;
+      --accent2: #138a78;
       --on-accent: #ffffff;
       --accent-soft: #e3ebff;
       --border: #d5ddf5;
-      --glow1: rgba(37, 99, 235, 0.08);
-      --glow2: rgba(124, 58, 237, 0.07);
+      --glow1: rgba(63, 91, 216, 0.07);
+      --glow2: rgba(19, 138, 120, 0.06);
       --shadow: none;
     }
     * { box-sizing: border-box; }
@@ -79,7 +79,7 @@
     .brand, .btn, .links a { white-space: nowrap; }
     .links a { padding: 6px 9px; font-size: 0.9rem; }
     .tools .btn { padding: 6px 10px; }
-    @media (max-width: 1260px) { .tools .cv-btn { display: none; } }
+    .tools .cv-btn { display: none; }
     #burger { display: none; }
 
     /* Layout */
@@ -134,6 +134,20 @@
     .proj .num { color: var(--accent); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; }
     .proj h3 { font-size: 1.2rem; }
     .proj p { margin: 0; color: var(--muted); }
+    .card .sub { font-size: 1.05rem; color: var(--accent); margin-bottom: 8px; }
+    .card .txt { margin: 0; color: var(--muted); max-width: 75ch; }
+    .grid.projects { margin-top: 16px; }
+    .grid.projects.schools { grid-template-columns: 1fr; gap: 12px; margin-top: 16px; }
+    .schools .proj { display: grid; grid-template-columns: 300px 1fr; column-gap: 32px; row-gap: 4px; align-items: start; }
+    .schools .proj > .num { grid-column: 1; grid-row: 1; }
+    .schools .proj > h3 { grid-column: 1; grid-row: 2; }
+    .schools .proj > .tags { grid-column: 1; grid-row: 3; margin-top: 8px; }
+    .schools .proj > p { grid-column: 2; grid-row: 1 / span 3; align-self: center; }
+    @media (max-width: 760px) {
+      .schools .proj { grid-template-columns: 1fr; }
+      .schools .proj > p { grid-column: 1; grid-row: auto; margin-top: 6px; }
+      .schools .proj > .tags { grid-row: auto; }
+    }
     .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
     .tags .badge { margin-top: 0; }
     .grid.projects { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
@@ -145,7 +159,7 @@
     footer { border-top: 1px solid var(--border); text-align: center; color: var(--muted); padding: 22px 20px; font-size: 0.9rem; }
 
     /* Mobile */
-    @media (max-width: 1000px) {
+    @media (max-width: 1100px) {
       #burger { display: inline-block; }
       .links {
         display: none; position: absolute; top: 100%; left: 0; right: 0;
@@ -169,6 +183,7 @@
         <li><a href="#home" data-fr="Accueil" data-en="Home">Accueil</a></li>
         <li><a href="#education" data-fr="Formation" data-en="Education">Formation</a></li>
         <li><a href="#projects" data-fr="Projets" data-en="Projects">Projets</a></li>
+        <li><a href="#mobility" data-fr="Mobilité" data-en="Mobility">Mobilité</a></li>
         <li><a href="#civic" data-fr="Engagement" data-en="Engagement">Engagement</a></li>
         <li><a href="#skills" data-fr="Compétences" data-en="Skills">Compétences</a></li>
         <li><a href="#languages" data-fr="Langues" data-en="Languages">Langues</a></li>
@@ -241,6 +256,41 @@
           <h3 data-fr="Reproduction du jeu du devin en Ada" data-en="Recreating the guessing game in Ada">Reproduction du jeu du devin en Ada</h3>
           <p data-fr="Reproduction du jeu du devin, programmée en langage Ada." data-en="Recreation of the guessing game, programmed in the Ada language.">Reproduction du jeu du devin, programmée en langage Ada.</p>
           <div class="tags"><span class="badge">Ada</span><span class="badge" data-fr="Programmation" data-en="Programming">Programmation</span></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Mobilité internationale -->
+    <section id="mobility">
+      <h2 class="title" data-fr="Mobilité internationale" data-en="International mobility">Mobilité internationale</h2>
+      <div class="card" style="margin-top:24px">
+        <h3 class="sub" data-fr="Objectifs" data-en="Goals">Objectifs</h3>
+        <p class="txt" data-fr="Perfectionner mon anglais technique, explorer des écosystèmes de recherche et développement, et approfondir mes compétences en instrumentation. Le Brésil retient particulièrement mon attention pour son dynamisme industriel et sa culture scientifique." data-en="Sharpen my technical English, explore research and development ecosystems, and deepen my skills in instrumentation. Brazil particularly appeals to me for its industrial dynamism and scientific culture.">Perfectionner mon anglais technique, explorer des écosystèmes de recherche et développement, et approfondir mes compétences en instrumentation. Le Brésil retient particulièrement mon attention pour son dynamisme industriel et sa culture scientifique.</p>
+      </div>
+      <div class="grid projects schools">
+        <article class="card proj">
+          <div class="num" data-fr="France" data-en="France">France</div>
+          <h3>INSA Toulouse</h3>
+          <p data-fr="École d'ingénieurs publique avec une spécialité automatique et électronique. Campus de 20 hectares et plus de 80 clubs étudiants." data-en="Public engineering school with an automation and electronics specialisation. A 20-hectare campus and more than 80 student clubs.">École d'ingénieurs publique avec une spécialité automatique et électronique. Campus de 20 hectares et plus de 80 clubs étudiants.</p>
+          <div class="tags"><span class="badge">Toulouse</span></div>
+        </article>
+        <article class="card proj">
+          <div class="num" data-fr="Brésil" data-en="Brazil">Brésil</div>
+          <h3>UFSC — Universidade Federal de Santa Catarina</h3>
+          <p data-fr="Université fédérale de Florianópolis, au sud du Brésil. Programmes de troisième cycle en génie électrique très bien notés par la CAPES (2013)." data-en="Federal university in Florianópolis, southern Brazil. Graduate programmes in electrical engineering highly rated by CAPES (2013).">Université fédérale de Florianópolis, au sud du Brésil. Programmes de troisième cycle en génie électrique très bien notés par la CAPES (2013).</p>
+          <div class="tags"><span class="badge">Florianópolis</span></div>
+        </article>
+        <article class="card proj">
+          <div class="num" data-fr="Brésil" data-en="Brazil">Brésil</div>
+          <h3>UFPA — Universidade Federal do Pará</h3>
+          <p data-fr="Première université d'Amazonie par ses effectifs, avec environ 50 000 étudiants. Centres de recherche en ingénierie et en écologie amazonienne." data-en="Largest university in the Amazon by enrolment, with about 50,000 students. Research centres in engineering and Amazonian ecology.">Première université d'Amazonie par ses effectifs, avec environ 50 000 étudiants. Centres de recherche en ingénierie et en écologie amazonienne.</p>
+          <div class="tags"><span class="badge">Belém</span></div>
+        </article>
+        <article class="card proj">
+          <div class="num" data-fr="Brésil" data-en="Brazil">Brésil</div>
+          <h3>UFRN — Universidade Federal do Rio Grande do Norte</h3>
+          <p data-fr="Université fédérale de Natal, avec une École des sciences et technologies. Premier master de neuro-ingénierie du Brésil." data-en="Federal university in Natal, with a School of Science and Technology. Home to Brazil's first master's in neuroengineering.">Université fédérale de Natal, avec une École des sciences et technologies. Premier master de neuro-ingénierie du Brésil.</p>
+          <div class="tags"><span class="badge">Natal</span></div>
         </article>
       </div>
     </section>
