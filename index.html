@@ -117,10 +117,18 @@
     .lang strong { font-family: Georgia, serif; font-size: 1.1rem; }
     .lang span { color: var(--muted); }
 
+    .proj { display: flex; flex-direction: column; gap: 10px; }
+    .proj .num { color: var(--accent); font-weight: 700; font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; }
+    .proj h3 { font-size: 1.2rem; }
+    .proj p { margin: 0; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+    .tags .badge { margin-top: 0; }
+    .grid.projects { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+
     footer { border-top: 1px solid var(--border); text-align: center; color: var(--muted); padding: 22px 20px; font-size: 0.9rem; }
 
     /* Mobile */
-    @media (max-width: 760px) {
+    @media (max-width: 940px) {
       #burger { display: inline-block; }
       .links {
         display: none; position: absolute; top: 100%; left: 0; right: 0;
@@ -143,6 +151,7 @@
       <ul class="links" id="links">
         <li><a href="#home" data-fr="Accueil" data-en="Home">Accueil</a></li>
         <li><a href="#education" data-fr="Formation" data-en="Education">Formation</a></li>
+        <li><a href="#projects" data-fr="Projets" data-en="Projects">Projets</a></li>
         <li><a href="#skills" data-fr="Compétences" data-en="Skills">Compétences</a></li>
         <li><a href="#languages" data-fr="Langues" data-en="Languages">Langues</a></li>
         <li><a href="#interests" data-fr="Intérêts" data-en="Interests">Intérêts</a></li>
@@ -196,6 +205,25 @@
           <span class="badge" data-fr="Mention Très Bien" data-en="Highest honours (Très Bien)">Mention Très Bien</span>
         </li>
       </ul>
+    </section>
+
+    <!-- Projets -->
+    <section id="projects">
+      <h2 class="title" data-fr="Projets" data-en="Projects">Projets</h2>
+      <div class="grid projects">
+        <article class="card proj">
+          <div class="num" data-fr="Projet 1" data-en="Project 1">Projet 1</div>
+          <h3 data-fr="Optimisation des tournées de collecte de déchets à Meknès" data-en="Optimising waste collection routes in Meknès">Optimisation des tournées de collecte de déchets à Meknès</h3>
+          <p data-fr="Projet portant sur l'optimisation des tournées de collecte des déchets dans la ville de Meknès." data-en="Project on optimising waste collection routes in the city of Meknès.">Projet portant sur l'optimisation des tournées de collecte des déchets dans la ville de Meknès.</p>
+          <div class="tags"><span class="badge" data-fr="Optimisation" data-en="Optimisation">Optimisation</span><span class="badge">Meknès</span></div>
+        </article>
+        <article class="card proj">
+          <div class="num" data-fr="Projet 2" data-en="Project 2">Projet 2</div>
+          <h3 data-fr="Reproduction du jeu du devin en Ada" data-en="Recreating the guessing game in Ada">Reproduction du jeu du devin en Ada</h3>
+          <p data-fr="Reproduction du jeu du devin, programmée en langage Ada." data-en="Recreation of the guessing game, programmed in the Ada language.">Reproduction du jeu du devin, programmée en langage Ada.</p>
+          <div class="tags"><span class="badge">Ada</span><span class="badge" data-fr="Programmation" data-en="Programming">Programmation</span></div>
+        </article>
+      </div>
     </section>
 
     <!-- Compétences -->
