@@ -46,7 +46,7 @@
       border-bottom: 1px solid var(--border);
     }
     .nav {
-      max-width: 1000px; margin: 0 auto; padding: 12px 20px;
+      max-width: 1180px; margin: 0 auto; padding: 12px 20px;
       display: flex; align-items: center; gap: 16px;
     }
     .brand { font-family: Georgia, serif; font-weight: 700; font-size: 1.15rem; color: var(--accent); text-decoration: none; margin-right: auto; }
@@ -66,7 +66,7 @@
     .brand, .btn, .links a { white-space: nowrap; }
     .links a { padding: 6px 9px; font-size: 0.9rem; }
     .tools .btn { padding: 6px 10px; }
-    @media (max-width: 1080px) { .tools .cv-btn { display: none; } }
+    @media (max-width: 1260px) { .tools .cv-btn { display: none; } }
     #burger { display: none; }
 
     /* Layout */
@@ -125,10 +125,14 @@
     .tags .badge { margin-top: 0; }
     .grid.projects { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 
+    .empty { border-style: dashed; box-shadow: none; }
+    .empty h3 { font-size: 1.1rem; color: var(--accent); margin-bottom: 8px; }
+    .empty p { margin: 0; color: var(--muted); max-width: 70ch; }
+
     footer { border-top: 1px solid var(--border); text-align: center; color: var(--muted); padding: 22px 20px; font-size: 0.9rem; }
 
     /* Mobile */
-    @media (max-width: 940px) {
+    @media (max-width: 1000px) {
       #burger { display: inline-block; }
       .links {
         display: none; position: absolute; top: 100%; left: 0; right: 0;
@@ -152,6 +156,7 @@
         <li><a href="#home" data-fr="Accueil" data-en="Home">Accueil</a></li>
         <li><a href="#education" data-fr="Formation" data-en="Education">Formation</a></li>
         <li><a href="#projects" data-fr="Projets" data-en="Projects">Projets</a></li>
+        <li><a href="#civic" data-fr="Engagement" data-en="Engagement">Engagement</a></li>
         <li><a href="#skills" data-fr="Compétences" data-en="Skills">Compétences</a></li>
         <li><a href="#languages" data-fr="Langues" data-en="Languages">Langues</a></li>
         <li><a href="#interests" data-fr="Intérêts" data-en="Interests">Intérêts</a></li>
@@ -223,6 +228,15 @@
           <p data-fr="Reproduction du jeu du devin, programmée en langage Ada." data-en="Recreation of the guessing game, programmed in the Ada language.">Reproduction du jeu du devin, programmée en langage Ada.</p>
           <div class="tags"><span class="badge">Ada</span><span class="badge" data-fr="Programmation" data-en="Programming">Programmation</span></div>
         </article>
+      </div>
+    </section>
+
+    <!-- Engagement citoyen -->
+    <section id="civic">
+      <h2 class="title" data-fr="Engagement citoyen" data-en="Civic engagement">Engagement citoyen</h2>
+      <div class="card empty" style="margin-top:24px">
+        <h3 data-fr="Aucune mission à présenter pour le moment" data-en="Nothing to showcase just yet">Aucune mission à présenter pour le moment</h3>
+        <p data-fr="Cette section se remplira au fil de mes expériences réelles. Elle accueillera mes futurs engagements : vie associative étudiante, bénévolat et actions locales, organisation d'événements ou de sorties, ainsi que des missions de coordination et de soutien." data-en="This section will grow with my real experiences. It will gather my future commitments: student associations, volunteering and local initiatives, organising events or outings, and coordination or support missions.">Cette section se remplira au fil de mes expériences réelles. Elle accueillera mes futurs engagements : vie associative étudiante, bénévolat et actions locales, organisation d'événements ou de sorties, ainsi que des missions de coordination et de soutien.</p>
       </div>
     </section>
 
