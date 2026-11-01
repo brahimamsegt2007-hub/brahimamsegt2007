@@ -7,24 +7,26 @@
   <meta name="description" content="Brahim Amsegt, étudiant ingénieur en 1ère année à l'ENSEEIHT (Toulouse INP). Parcours, compétences, langues et centres d'intérêt.">
   <style>
     :root {
-      --bg: #f7f8fb;
-      --surface: #ffffff;
-      --text: #1b2333;
-      --muted: #5d6779;
-      --accent: #1f3a6e;
-      --accent-soft: #e6ecf8;
-      --border: #dfe4ee;
-      --shadow: 0 6px 24px rgba(31, 58, 110, 0.08);
+      color-scheme: dark;
+      --bg: #000000;
+      --surface: #0c0c0d;
+      --text: #f2f2f2;
+      --muted: #9a9a9f;
+      --accent: #ffffff;
+      --accent-soft: #1a1a1c;
+      --border: #26262a;
+      --shadow: none;
     }
-    :root[data-theme="dark"] {
-      --bg: #0f1522;
-      --surface: #171f31;
-      --text: #e8ecf5;
-      --muted: #9aa5ba;
-      --accent: #8fb0ff;
-      --accent-soft: #1f2a45;
-      --border: #26314a;
-      --shadow: 0 6px 24px rgba(0, 0, 0, 0.35);
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --bg: #ffffff;
+      --surface: #f6f6f7;
+      --text: #111111;
+      --muted: #5f5f66;
+      --accent: #000000;
+      --accent-soft: #ececee;
+      --border: #dcdce0;
+      --shadow: none;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 76px; }
@@ -35,7 +37,7 @@
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       line-height: 1.65;
     }
-    h1, h2, h3 { font-family: Georgia, "Times New Roman", serif; line-height: 1.2; margin: 0; }
+    h1, h2, h3 { font-family: inherit; line-height: 1.15; margin: 0; letter-spacing: -0.02em; font-weight: 700; }
     a { color: var(--accent); }
 
     /* Navbar */
@@ -49,7 +51,7 @@
       max-width: 1180px; margin: 0 auto; padding: 12px 20px;
       display: flex; align-items: center; gap: 16px;
     }
-    .brand { font-family: Georgia, serif; font-weight: 700; font-size: 1.15rem; color: var(--accent); text-decoration: none; margin-right: auto; }
+    .brand { font-weight: 700; font-size: 1.05rem; letter-spacing: 0.02em; color: var(--accent); text-decoration: none; margin-right: auto; }
     .links { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
     .links a {
       display: block; padding: 6px 12px; border-radius: 999px;
@@ -62,6 +64,7 @@
       border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 0.9rem; cursor: pointer; text-decoration: none;
     }
     .btn:hover { border-color: var(--accent); }
+    .card:hover { border-color: #4a4a50; }
     .btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
     .brand, .btn, .links a { white-space: nowrap; }
     .links a { padding: 6px 9px; font-size: 0.9rem; }
@@ -72,24 +75,24 @@
     /* Layout */
     main { max-width: 1000px; margin: 0 auto; padding: 0 20px 60px; }
     section { padding: 56px 0 8px; }
-    .title { font-size: 1.7rem; color: var(--accent); margin-bottom: 8px; }
-    .title::after { content: ""; display: block; width: 48px; height: 3px; background: var(--accent); border-radius: 3px; margin-top: 8px; }
+    .title { font-size: 1.6rem; color: var(--accent); margin-bottom: 8px; display: flex; align-items: center; gap: 18px; }
+    .title::after { content: ""; flex: 1; height: 1px; background: var(--border); }
     .card {
       background: var(--surface); border: 1px solid var(--border);
-      border-radius: 16px; padding: 22px 24px; box-shadow: var(--shadow);
+      border-radius: 12px; padding: 22px 24px; transition: border-color .2s;
     }
 
     /* Hero */
     .hero { display: grid; grid-template-columns: 1fr 220px; gap: 36px; align-items: center; padding-top: 48px; }
     .kicker { color: var(--muted); letter-spacing: 0.08em; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 10px; }
-    .hero h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); color: var(--accent); }
+    .hero h1 { font-size: clamp(2.4rem, 6.5vw, 4rem); color: var(--accent); letter-spacing: -0.035em; }
     .role { font-size: 1.15rem; color: var(--muted); margin: 8px 0 18px; }
-    .lead { font-style: italic; max-width: 60ch; }
+    .lead { color: var(--text); opacity: .88; max-width: 60ch; }
     .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
     .cta .btn { padding: 10px 18px; font-size: 0.95rem; }
     .photo {
-      width: 220px; height: 290px; object-fit: cover; object-position: center; border-radius: 20px;
-      box-shadow: var(--shadow); border: 4px solid var(--surface);
+      width: 220px; height: 290px; object-fit: cover; object-position: center; border-radius: 14px;
+      border: 1px solid var(--border);
     }
 
     /* Timeline */
@@ -111,10 +114,10 @@
     /* Grids */
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; margin-top: 24px; }
     .grid .card { padding: 18px 20px; }
-    .grid .card .icon { font-size: 1.5rem; }
+    .grid .card .icon { font-size: 1.5rem; filter: grayscale(1); }
     .grid .card p { margin: 6px 0 0; }
     .lang { display: flex; justify-content: space-between; align-items: center; }
-    .lang strong { font-family: Georgia, serif; font-size: 1.1rem; }
+    .lang strong { font-size: 1.05rem; }
     .lang span { color: var(--muted); }
 
     .proj { display: flex; flex-direction: column; gap: 10px; }
@@ -292,7 +295,7 @@
     /* Thème */
     function safeGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
     function safeSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
-    var theme = safeGet('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    var theme = safeGet('theme') || 'dark';
     root.setAttribute('data-theme', theme);
     document.getElementById('theme').addEventListener('click', function () {
       theme = theme === 'dark' ? 'light' : 'dark';
